@@ -1039,12 +1039,13 @@ def ms_hysteresis_nu1(
     ax.text(collapse, 1.85, "collapse", ha="center", va="bottom")
     ax.text(recovery, 1.85, "recovery", ha="center", va="bottom")
 
-    ax.set_xlabel("driver of decline $d_A$\t\t\t", labelpad=-15)
+    # ax.set_xlabel("driver of decline $d_A$\t\t\t", labelpad=-15)
     ax.set_ylabel("pollinator species\nequilibrium abundance")
     dA_limit = min(dA_cutoff, dAs.max())
     ax.set_xlim(0, dA_limit)
     ax.set_ylim(-0.1, 2.2)
-    ax.set_xticks([collapse], [r"$d_A^{\mathrm{\ collapse}}$"])
+    ax.set_xticks([recovery, collapse], [r"$d_A^{\mathrm{\ recovery}}$", r"$d_A^{\mathrm{\ collapse}}$"])
+    # ax.set_xticks([recovery], [r"$d_A^{\mathrm{\ recovery}}$"])
     ax.set_yticks([])
     # plt.legend([line_forward, line_backward], ["Forward", "Backward"])
     if save_fig:
@@ -1953,6 +1954,9 @@ def ms_AF_change(save_fig=False, format="png"):
                     degree_dict[j] = degree_A
 
                     poll_per_degree_dict[degree_A].append(j)
+
+                    # set same ylim for all foraging effort plots
+                    ax.set_ylim(0.0, 0.8)
 
     # set colors and linestyles for all the degree graphs
     colors = ["#E69F00", "#56B4E9", "#009E73", "#0072B2", "#D55E00", "#CC79A7", "#F0E442"]
